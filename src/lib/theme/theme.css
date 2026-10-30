@@ -1,0 +1,43 @@
+@font-face {
+  font-family: "Roboto Flex";
+  src: url("../../../node_modules/@fontsource-variable/roboto-flex/files/roboto-flex-latin-wght-normal.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 1000;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: dark;
+  --bg: #0e0f12;
+  --surface: #17191d;
+  --surface-2: #212429;
+  --surface-3: #2b2f36;
+  --primary: #8ab0ff;
+  --on-primary: #0a1b45;
+  --primary-container: #2a3f6e;
+  --go: #c6f135;
+  --on-go: #1a2200;
+  --stop: #ff6b5b;
+  --on-stop: #3a0904;
+  --text: #f2f3f5;
+  --text-dim: rgba(242, 243, 245, 0.6);
+  --scrim: rgba(0, 0, 0, 0.4);
+  --shape-16: 16px;
+  --shape-28: 28px;
+  --shape-40: 40px;
+  --shape-full: 999px;
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --display: 40px;
+  --title: 24px;
+  --body: 16px;
+  --label: 13px;
+  --weight-display: 800;
+  --weight-title: 700;
+  --weight-body: 500;
+  --weight-label: 600;
+  --spring-stiffness: 500;
+  --spring-damping: 26;
+}

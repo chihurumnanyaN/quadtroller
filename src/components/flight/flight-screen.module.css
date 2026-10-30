@@ -1,0 +1,107 @@
+.screen {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  isolation: isolate;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.screen :global(button), .screen :global(a) { color: inherit; font: inherit; -webkit-tap-highlight-color: transparent; }
+.screen :global(button:focus-visible), .screen :global(a:focus-visible) { outline: 2px solid var(--primary); outline-offset: 3px; }
+.screen :global(button:disabled) { opacity: .4; }
+.screen :global(.hud-video-background) { position: absolute; z-index: -1; inset: 0; overflow: hidden; background: var(--bg); }
+.screen :global(.hud-video-feed) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+.screen :global(.hud-video-feed.is-reversed) { transform: scaleX(-1); }
+.screen :global(.hud-video-feed.is-flipped) { transform: rotate(180deg); }
+.screen :global(.hud-video-feed.is-reversed.is-flipped) { transform: rotate(180deg) scaleX(-1); }
+.screen :global(.hud-vr-feed) { position: absolute; inset: 0; display: flex; gap: 1px; overflow: hidden; }
+.screen :global(.hud-vr-feed .hud-video-feed) { position: relative; width: calc(50% - .5px); height: 100%; inset: auto; }
+.screen :global(.hud-connection-loss) { position: absolute; z-index: 2; inset: 0; display: flex; align-items: center; justify-content: center; gap: var(--space-2); background: var(--scrim); pointer-events: none; }
+.screen :global(.hud-connection-loss-icon) { color: var(--text); }
+.screen :global(.hud-connection-retry) { width: 56px; height: 56px; display: grid; place-items: center; padding: 0; border: 0; border-radius: var(--shape-full); background: var(--surface-2); color: var(--primary); pointer-events: auto; cursor: pointer; }
+
+.screen :global(.hud-back), .screen :global(.hud-icon-button), .screen :global(.hud-status), .screen :global(.hud-stop), .screen :global(.hud-speed), .screen :global(.hud-dock) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: var(--scrim);
+  color: var(--text);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.screen :global(.hud-back) { position: absolute; top: max(var(--space-2), env(safe-area-inset-top)); left: max(var(--space-2), env(safe-area-inset-left)); width: 48px; height: 48px; border-radius: var(--shape-full); text-decoration: none; }
+.screen :global(.hud-status) { position: absolute; top: max(var(--space-2), env(safe-area-inset-top)); left: 50%; min-height: 40px; gap: var(--space-2); padding: 0 var(--space-2); transform: translateX(-50%); border-radius: var(--shape-full); font-size: var(--label); font-variant-numeric: tabular-nums; }
+.screen :global(.hud-status span) { display: inline-flex; align-items: center; gap: var(--space-1); }
+.screen :global(.hud-status svg) { color: var(--primary); }
+.screen :global(.hud-status b) { color: var(--text); font-weight: var(--weight-label); }
+.screen :global(.hud-top-actions) { position: absolute; top: max(var(--space-2), env(safe-area-inset-top)); right: max(var(--space-2), env(safe-area-inset-right)); display: flex; align-items: center; gap: var(--space-1); }
+.screen :global(.hud-icon-button) { width: 48px; height: 48px; padding: 0; border-radius: var(--shape-full); cursor: pointer; }
+.screen :global(.hud-stop) { width: 56px; height: 56px; padding: 0; border-radius: var(--shape-full); background: var(--stop); color: var(--on-stop); cursor: pointer; }
+
+.screen :global(.hud-stick-zone) { position: absolute; right: max(var(--space-3), env(safe-area-inset-right)); bottom: max(var(--space-3), env(safe-area-inset-bottom)); left: max(var(--space-3), env(safe-area-inset-left)); display: flex; align-items: flex-end; justify-content: space-between; pointer-events: none; }
+.screen :global(.hud-stick) { width: clamp(112px, min(34vw, 38vh), 216px); display: flex; flex-direction: column; align-items: center; gap: var(--space-1); pointer-events: auto; }
+.screen :global(.hud-stick-action) { width: 48px; height: 48px; flex: none; display: grid; place-items: center; padding: 0; border: 0; border-radius: var(--shape-full); background: var(--go); color: var(--on-go); cursor: pointer; }
+.screen :global(.hud-stick-action.is-land) { background: var(--primary); color: var(--on-primary); }
+.screen :global(.hud-stick-base) { position: relative; width: 100%; aspect-ratio: 1; overflow: hidden; border: 1px solid rgba(255,255,255,.5); border-radius: var(--shape-full); background: rgba(255,255,255,.12); touch-action: none; }
+.screen :global(.hud-stick-ring) { position: absolute; top: 50%; left: 50%; width: 54%; height: 54%; transform: translate(-50%, -50%); border: 1px solid rgba(255,255,255,.24); border-radius: var(--shape-full); pointer-events: none; }
+.screen :global(.hud-stick-thumb) { position: absolute; top: 50%; left: 50%; display: block; width: 36%; height: 36%; margin: -18% 0 0 -18%; border-radius: var(--shape-full); background: var(--primary); pointer-events: none; }
+.screen :global(.hud-stick-hint) { position: absolute; z-index: 1; display: grid; place-items: center; color: var(--text); pointer-events: none; transition: opacity 400ms ease; }
+.screen :global(.hud-hint-up) { top: 8%; left: 50%; transform: translateX(-50%); }
+.screen :global(.hud-hint-down) { bottom: 8%; left: 50%; transform: translateX(-50%); }
+.screen :global(.hud-hint-left) { top: 50%; left: 8%; transform: translateY(-50%); }
+.screen :global(.hud-hint-right) { top: 50%; right: 8%; transform: translateY(-50%); }
+
+.screen :global(.hud-dock-group) { position: absolute; z-index: 3; bottom: max(var(--space-2), env(safe-area-inset-bottom)); left: 50%; display: flex; align-items: center; gap: var(--space-1); transform: translateX(-50%); }
+.screen :global(.hud-speed) { width: 48px; height: 48px; padding: 0; border-radius: var(--shape-full); font-size: var(--label); font-weight: var(--weight-title); font-variant-numeric: tabular-nums; cursor: pointer; }
+.screen :global(.hud-dock) { min-height: 88px; gap: var(--space-1); padding: var(--space-1); border-radius: var(--shape-full); }
+.screen :global(.hud-dock-action) { width: 48px; height: 48px; flex: none; display: grid; place-items: center; padding: 0; border: 0; border-radius: var(--shape-full); background: transparent; color: var(--text); cursor: pointer; }
+.screen :global(.hud-dock-action.is-recording) { color: var(--go); }
+.screen :global(.hud-flight-action) { width: 72px; height: 72px; flex: none; display: grid; place-items: center; padding: 0; overflow: hidden; border: 0; border-radius: var(--shape-full); background: var(--go); color: var(--on-go); cursor: pointer; }
+.screen :global(.hud-flight-action.is-land) { border-radius: var(--shape-28); background: var(--primary); color: var(--on-primary); }
+.screen :global(.hud-flight-action > span) { display: grid; place-items: center; }
+
+.screen :global(.hud-sheet-backdrop) { position: absolute; z-index: 5; inset: 0; width: 100%; height: 100%; border: 0; background: var(--scrim); }
+.screen :global(.hud-sheet) { position: absolute; z-index: 6; top: 0; right: 0; bottom: 0; width: min(352px, 88vw); padding: max(var(--space-2), env(safe-area-inset-top)) max(var(--space-2), env(safe-area-inset-right)) max(var(--space-2), env(safe-area-inset-bottom)) var(--space-2); background: var(--surface); touch-action: none; }
+.screen :global(.hud-sheet-header) { height: 56px; display: flex; justify-content: flex-end; align-items: flex-start; }
+.screen :global(.hud-sheet-header .hud-icon-button) { background: var(--surface-2); }
+.screen :global(.hud-mode-grid) { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-1); }
+.screen :global(.hud-mode-tile) { aspect-ratio: 1; min-width: 0; display: grid; place-items: center; border: 0; border-radius: var(--shape-28); background: var(--surface-2); color: var(--text); cursor: pointer; transition: border-radius 180ms ease, background-color 180ms ease, color 180ms ease; }
+.screen :global(.hud-mode-tile.is-active) { border-radius: var(--shape-16); background: var(--go); color: var(--on-go); }
+.screen :global(.hud-trim-pad) { position: absolute; top: 50%; left: 50%; width: 216px; height: 216px; transform: translate(-50%, -50%); display: grid; grid-template: repeat(3, 1fr) / repeat(3, 1fr); gap: var(--space-1); }
+.screen :global(.hud-trim-arrow), .screen :global(.hud-trim-center) { display: grid; place-items: center; border: 0; border-radius: var(--shape-16); background: var(--surface-2); color: var(--text); }
+.screen :global(.hud-trim-center) { background: transparent; color: var(--primary); }
+.screen :global(.hud-trim-up) { grid-area: 1 / 2; }
+.screen :global(.hud-trim-left) { grid-area: 2 / 1; }
+.screen :global(.hud-trim-center) { grid-area: 2 / 2; }
+.screen :global(.hud-trim-right) { grid-area: 2 / 3; }
+.screen :global(.hud-trim-down) { grid-area: 3 / 2; }
+.screen :global(.hud-screen-reader) { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+.screen:global(.is-idle) :global(.hud-control), .screen:global(.is-idle) :global(.hud-stick-base), .screen:global(.is-idle) :global(.hud-sheet button:not(.hud-stop)) { opacity: .4; }
+.screen :global(.hud-control), .screen :global(.hud-stick-base), .screen :global(.hud-sheet button) { transition: opacity 240ms ease; }
+.screen:global(.is-idle) :global(.hud-stop) { opacity: 1; }
+
+@media (orientation: portrait) {
+  .screen :global(.hud-stick-zone) { top: 50%; bottom: auto; transform: translateY(-42%); }
+  .screen :global(.hud-stick) { width: clamp(104px, 30vw, 148px); }
+  .screen :global(.hud-dock-group) { bottom: max(var(--space-3), env(safe-area-inset-bottom)); }
+}
+
+@media (max-width: 420px) {
+  .screen :global(.hud-status) { gap: var(--space-1); padding-inline: var(--space-1); }
+  .screen :global(.hud-top-actions) { gap: 4px; }
+  .screen :global(.hud-stop) { width: 48px; height: 48px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen :global(*), .screen :global(*::before), .screen :global(*::after) { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Quadtroller</string>
+    <string name="title_activity_main">Quadtroller</string>
+    <string name="package_name">com.bigc.quadtroller</string>
+    <string name="custom_url_scheme">com.bigc.quadtroller</string>
+</resources>
